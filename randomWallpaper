@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+scriptsDir=~/.scripts
+wallpaperDir=~/Pictures/wallpapers/active/single
+monitors=$(hyprctl monitors -j | jq -r '.[].name')
+IFS=$'\n' read -r -d '' -a monitorsArray <<< "$monitors"
+contador=0
+
+ls $wallpaperDir | sort -R | tail -${#monitorsArray[@]} | while read file; do
+  $scriptsDir/wall $wallpaperDir/$file ${monitorsArray[$contador]}
+  echo "File: $file" 
+  echo "Monitor: ${monitorsArray[$contador]}"
+  ((contador++))
+done
+

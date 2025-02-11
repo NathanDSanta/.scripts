@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+if [[ "$1" -eq "get" ]]; then
+  notify-send "Current Power Mode:" "$(powerprofilesctl get)"
+  echo "Notification sent" 
+elif [[ "$1" -eq "set" ]]; then
+  echo "Not done yet"
+else
+  echo "Invalid option"
+fi
+

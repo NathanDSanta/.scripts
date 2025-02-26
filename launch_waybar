@@ -2,5 +2,10 @@
 
 killall -q waybar
 
-# env GTK_DEBUG=interactive
-waybar -l info -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css > /tmp/waybar.log 2>&1 & disown
+if [[ "$#" -eq 1 ]]; then
+  # env GTK_DEBUG=interactive
+  waybar -l info -c ~/.config/waybar/testing/config.jsonc -s ~/.config/waybar/testing/style.css > /tmp/waybar.log 2>&1 & disown
+else
+  # env GTK_DEBUG=interactive
+  waybar -l info -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css > /tmp/waybar.log 2>&1 & disown
+fi

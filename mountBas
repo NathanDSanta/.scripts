@@ -1,0 +1,19 @@
+#!/bin/bash
+
+i=0
+sshfs ~/Documents/uni/bas bas:/u/alum/u1994947
+error=$?
+echo "$error"
+while [[ "$error" -ne 0 && $i -lt 5 ]]; do
+  sleep 20
+  sshfs ~/Documents/uni/bas bas:/u/alum/u1994947
+  error=$?
+  ((i++))
+done
+
+
+if [[ "$error" -ne 0 ]]; then
+  notify-send "BAS" "Mounting connection failed"
+else
+  notify-send "BAS" "Mounting connection successful"
+fi

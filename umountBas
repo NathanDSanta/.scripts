@@ -1,0 +1,9 @@
+#!/bin/bash
+umount ~/Documents/uni/bas/
+
+if [[ $? -ne 0 ]]; then
+  echo "Bas umounting failed" 
+else
+  echo "Bas umounted successfully"
+fi
+

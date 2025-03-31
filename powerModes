@@ -1,10 +1,22 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-if [[ "$1" -eq "get" ]]; then
-  notify-send "Current Power Mode:" "$(powerprofilesctl get)"
+currentPowerMode=`powerprofilesctl get`
+if [[ "$1" = "get" ]]
+then
+  notify-send "Current Power Mode:" "$currentPowerMode"
+  echo "$1"
   echo "Notification sent" 
-elif [[ "$1" -eq "set" ]]; then
-  echo "Not done yet"
+elif [[ "$1" = "cicle" ]]; then
+  if [[ $currentPowerMode = "balanced" ]]; then
+    powerprofilesctl set performance
+    notify-send "New Power Mode:" "performance"
+  elif [[ $currentPowerMode = "performance" ]]; then
+    powerprofilesctl set power-saver
+    notify-send "New Power Mode:" "power-saver"
+  else
+   powerprofilesctl set balanced
+    notify-send "New Power Mode:" "balanced"
+  fi
 else
   echo "Invalid option"
 fi

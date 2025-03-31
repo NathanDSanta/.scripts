@@ -3,7 +3,6 @@
 i=0
 sshfs ~/Documents/uni/bas bas:/u/alum/u1994947
 error=$?
-echo "$error"
 while [[ "$error" -ne 0 && $i -lt 5 ]]; do
   sleep 20
   sshfs ~/Documents/uni/bas bas:/u/alum/u1994947
@@ -14,6 +13,8 @@ done
 
 if [[ "$error" -ne 0 ]]; then
   notify-send "BAS" "Mounting connection failed"
+  echo "Bas mounting connection failed"
 else
   notify-send "BAS" "Mounting connection successful"
+  echo "Bas mounting connection successful"
 fi

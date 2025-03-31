@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gitCommand="git remote -v | sed -n 's/.*git@github.com:\(.*\) (.*)/\1/p'"
+bash -c "$gitCommand"
+
+
